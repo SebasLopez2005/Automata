@@ -1,0 +1,41 @@
+[
+    {
+        "player_name": "Lionel Messi",
+        "position": "CF",
+        "stats": {
+            "pac": 93,
+            "sho": 92,
+            "pas": 93,
+            "dri": 96,
+            "def": 65,
+            "phy": 83
+        },
+        "country": "Argentina"
+    },
+    {
+        "player_name": "Cristiano Ronaldo",
+        "position": "LW",
+        "stats": {
+            "pac": 94,
+            "sho": 94,
+            "pas": 87,
+            "dri": 93,
+            "def": 70,
+            "phy": 88
+        },
+        "country": "Portugal"
+    },
+    {
+        "player_name": "Neymar Jr.",
+        "position": "LW",
+        "stats": {
+            "pac": 90,
+            "sho": 90,
+            "pas": 90,
+            "dri": 90,
+            "def": 50,
+            "phy": 50
+        },
+        "country": "Brazil"
+    }
+]
