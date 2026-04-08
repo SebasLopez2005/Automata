@@ -1,32 +1,40 @@
-# Token types
-tokens = (
-    'PLAYER_NAME',
-    'POSITION',
-    'STATS',
-    'COUNTRY'
-)
+import lexer_rules
+from position_weights import POSITION_WEIGHTS
 
-literals = ['|']
+tokens = lexer_rules.tokens
 
-# Token rules - order matters: POSITION before COUNTRY (so "CF" matches POSITION)
-def t_POSITION(t):
-    r'(ST|CF|CAM|CM|CDM|LW|RW|LM|RM|LB|RB|CB|GK|LWB|RWB)'
-    return t
+STAT_KEYS = ["pac", "sho", "pas", "dri", "def", "phy"]
 
-def t_COUNTRY(t):
-    r"[A-Za-z][A-Za-z .\-]*"  # No apostrophe: Argentina, Costa Rica
-    return t
+def p_card(p):
+    '''card : name "|" POSITION "|" COUNTRY "|" STATS STATS STATS STATS STATS STATS'''
+    
+    stats = {
+        "pac": p[7],
+        "sho": p[8],
+        "pas": p[9],
+        "dri": p[10],
+        "def": p[11],
+        "phy": p[12]
+    }
 
-t_PLAYER_NAME = r"[A-Za-z][A-Za-z .'\-]*"  # With apostrophe: O'Brien
+    weights = POSITION_WEIGHTS.get(p[3], {})
+    rating = round(sum(stats[s] * w for s, w in weights.items()))
 
-def t_STATS(t):
-    r'[1-9][0-9]?'
-    t.value = int(t.value)
-    return t
+    p[0] = {
+        "player_name": p[1],
+        "position": p[3],
+        "country": p[5],
+        "stats": stats,
+        "rating": rating
+    }
 
-# Ignore spaces and tabs between tokens
-t_ignore = ' \t'
+def p_name(p):
+    '''name : PLAYER_NAME
+            | COUNTRY'''
+    p[0] = p[1]
 
-def t_error(t):
-    print(f"Illegal character '{t.value[0]}'")
-    t.lexer.skip(1)
+def p_error(p):
+    if p:
+        print(f"Syntax error at '{p.value}'")
+    else:
+        print("Syntax error at EOF")
