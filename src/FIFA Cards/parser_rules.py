@@ -5,11 +5,26 @@ tokens = lexer_rules.tokens
 
 def p_card(p):
     '''card : name "|" POSITION "|" COUNTRY "|" STATS STATS STATS STATS STATS STATS'''
-    # p[1]=name (PLAYER_NAME or COUNTRY), p[3]=position, p[5]=country, p[7-12]=stats
-    stats = {'pac': p[7], 'sho': p[8], 'pas': p[9], 'dri': p[10], 'def': p[11], 'phy': p[12]}
-    weights = POSITION_WEIGHTS.get(p[3])
-    rating = sum(stats[s] * w for s, w in weights.items())
-    p[0] = round(rating)
+
+    stats = {
+        'pac': p[7],
+        'sho': p[8],
+        'pas': p[9],
+        'dri': p[10],
+        'def': p[11],
+        'phy': p[12]
+    }
+
+    weights = POSITION_WEIGHTS.get(p[3], {})
+    rating = round(sum(stats[s] * w for s, w in weights.items()))
+
+    p[0] = {
+        "player_name": p[1],
+        "position": p[3],
+        "country": p[5],
+        "stats": stats,
+        "rating": rating
+    }
 
 def p_name(p):
     '''name : PLAYER_NAME

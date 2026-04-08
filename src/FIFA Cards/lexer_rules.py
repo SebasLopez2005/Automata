@@ -1,40 +1,31 @@
-import lexer_rules
-from position_weights import POSITION_WEIGHTS
+# Token types
+tokens = (
+    'PLAYER_NAME',
+    'POSITION',
+    'STATS',
+    'COUNTRY'
+)
 
-tokens = lexer_rules.tokens
+literals = ['|']
 
-STAT_KEYS = ["pac", "sho", "pas", "dri", "def", "phy"]
+# Token rules
+def t_POSITION(t):
+    r'(ST|CF|CAM|CM|CDM|LW|RW|LM|RM|LB|RB|CB|GK|LWB|RWB)'
+    return t
 
-def p_card(p):
-    '''card : name "|" POSITION "|" COUNTRY "|" STATS STATS STATS STATS STATS STATS'''
-    
-    stats = {
-        "pac": p[7],
-        "sho": p[8],
-        "pas": p[9],
-        "dri": p[10],
-        "def": p[11],
-        "phy": p[12]
-    }
+def t_COUNTRY(t):
+    r"[A-Za-z][A-Za-z .\-]*"
+    return t
 
-    weights = POSITION_WEIGHTS.get(p[3], {})
-    rating = round(sum(stats[s] * w for s, w in weights.items()))
+t_PLAYER_NAME = r"[A-Za-z][A-Za-z .'\-]*"
 
-    p[0] = {
-        "player_name": p[1],
-        "position": p[3],
-        "country": p[5],
-        "stats": stats,
-        "rating": rating
-    }
+def t_STATS(t):
+    r'[1-9][0-9]?'
+    t.value = int(t.value)
+    return t
 
-def p_name(p):
-    '''name : PLAYER_NAME
-            | COUNTRY'''
-    p[0] = p[1]
+t_ignore = ' \t'
 
-def p_error(p):
-    if p:
-        print(f"Syntax error at '{p.value}'")
-    else:
-        print("Syntax error at EOF")
+def t_error(t):
+    print(f"Illegal character '{t.value[0]}'")
+    t.lexer.skip(1)
