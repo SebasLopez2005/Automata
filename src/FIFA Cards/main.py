@@ -39,3 +39,7 @@ for card in cards:
 
 for c in parsed_cards:
     print(f"{c['player_name']} ({c['position']}) - Rating: {c['rating']}")
+
+from starting11 import build_starting_11, print_lineup
+lineup = build_starting_11(parsed_cards)
+print_lineup(lineup)
