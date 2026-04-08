@@ -37,5 +37,153 @@
             "phy": 50
         },
         "country": "Brazil"
+    },
+    {
+        "player_name": "Kylian Mbappé",
+        "position": "ST",
+        "stats": {
+            "pac": 96,
+            "sho": 89,
+            "pas": 80,
+            "dri": 92,
+            "def": 40,
+            "phy": 80
+        },
+        "country": "France"
+    },
+    {
+        "player_name": "Kevin De Bruyne",
+        "position": "CM",
+        "stats": {
+            "pac": 76,
+            "sho": 86,
+            "pas": 93,
+            "dri": 88,
+            "def": 65,
+            "phy": 78
+        },
+        "country": "Belgium"
+    },
+    {
+        "player_name": "Virgil van Dijk",
+        "position": "CB",
+        "stats": {
+            "pac": 77,
+            "sho": 60,
+            "pas": 70,
+            "dri": 72,
+            "def": 91,
+            "phy": 86
+        },
+        "country": "Netherlands"
+    },
+    {
+        "player_name": "Sergio Ramos",
+        "position": "CB",
+        "stats": {
+            "pac": 75,
+            "sho": 70,
+            "pas": 75,
+            "dri": 80,
+            "def": 88,
+            "phy": 85
+        },
+        "country": "Spain"
+    },
+    {
+        "player_name": "Luka Modrić",
+        "position": "CM",
+        "stats": {
+            "pac": 72,
+            "sho": 80,
+            "pas": 92,
+            "dri": 90,
+            "def": 65,
+            "phy": 70
+        },
+        "country": "Croatia"
+    },
+    {
+        "player_name": "Mohamed Salah",
+        "position": "RW",
+        "stats": {
+            "pac": 93,
+            "sho": 88,
+            "pas": 80,
+            "dri": 91,
+            "def": 45,
+            "phy": 75
+        },
+        "country": "Egypt"
+    },
+    {
+        "player_name": "Keylor Navas",
+        "position": "GK",
+        "stats": {
+            "pac": 78,
+            "sho": 92,
+            "pas": 80,
+            "dri": 85,
+            "def": 90,
+            "phy": 93
+        },
+        "country": "Costa Rica"
+    },
+    {
+        "player_name": "Alisson Becker",
+        "position": "GK",
+        "stats": {
+            "pac": 80,
+            "sho": 90,
+            "pas": 85,
+            "dri": 80,
+            "def": 88,
+            "phy": 92
+        },
+        "country": "Brazil"
+    },
+    {
+        "player_name": "Robert Lewandowski",
+        "position": "ST",
+        "stats": {
+            "pac": 78,
+            "sho": 92,
+            "pas": 80,
+            "dri": 85,
+            "def": 40,
+            "phy": 85
+        },
+        "country": "Poland"
+    },
+    {
+        "player_name": "Sadio Mané",
+        "position": "LW",
+        "stats": {
+            "pac": 92,
+            "sho": 88,
+            "pas": 80,
+            "dri": 90,
+            "def": 45,
+            "phy": 80
+        },
+        "country": "Senegal"
+    },
+    {
+        "player_name": "Eden Hazard",
+        "position": "LW",
+        "stats": {
+            "pac": 88,
+            "sho": 85,
+            "pas": 85,
+            "dri": 92,
+            "def": 50,
+            "phy": 75
+        },
+        "country": "Belgium"
     }
+
+
+
+
 ]
+
