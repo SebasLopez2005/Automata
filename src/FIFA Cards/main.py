@@ -1,5 +1,6 @@
 import sys
 import json
+import unicodedata
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 
@@ -12,6 +13,12 @@ import parser_rules
 parser_rules.lexer = lexer
 parser = yacc.yacc(module=parser_rules)
 
+def remove_accents(text):
+    return ''.join(
+        c for c in unicodedata.normalize('NFKD', text)
+        if not unicodedata.combining(c)
+    )
+
 card_path = Path(__file__).parent.parent.parent / "cards.json"
 with open(card_path, "r") as f:
     cards = json.load(f)
@@ -19,9 +26,9 @@ with open(card_path, "r") as f:
 parsed_cards = []
 
 for card in cards:
-    name = card["player_name"]
+    name = remove_accents(card["player_name"])
     position = card["position"]
-    country = card.get("country", "")
+    country = remove_accents(card.get("country", ""))
     s = card["stats"]
 
     card_str = f"{name} | {position} | {country} | {s['pac']} {s['sho']} {s['pas']} {s['dri']} {s['def']} {s['phy']}"
@@ -32,8 +39,3 @@ for card in cards:
 
 for c in parsed_cards:
     print(f"{c['player_name']} ({c['position']}) - Rating: {c['rating']}")
-
-from starting11 import build_starting_11, print_lineup
-
-lineup = build_starting_11(parsed_cards)
-print_lineup(lineup)
