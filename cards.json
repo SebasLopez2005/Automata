@@ -180,6 +180,32 @@
             "phy": 75
         },
         "country": "Belgium"
+    },
+    {
+        "player_name": "Manuel Neuer",
+        "position": "CM",
+        "stats": {
+            "pac": 80,
+            "sho": 90,
+            "pas": 85,
+            "dri": 80,
+            "def": 88,
+            "phy": 92
+        },
+        "country": "Germany"
+    },
+    {
+        "player_name": "Sergio Agüero",
+        "position": "ST",
+        "stats": {
+            "pac": 85,
+            "sho": 90,
+            "pas": 80,
+            "dri": 88,
+            "def": 40,
+            "phy": 75
+        },
+        "country": "Argentina"
     }
 
 
