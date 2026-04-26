@@ -8,6 +8,8 @@ __pycache__
 /build
 /*.egg-info
 *.aux
-*.fdb-latexmk
+*.fdb_latexmk
 *.fls
 *.log
+*.synctex.gz
+*.synctex(busy)
