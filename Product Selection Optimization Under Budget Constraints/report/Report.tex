@@ -1,0 +1,42 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+
+\title{Product Selection Optimization Under Budget Constraints}
+\author{Esteban Murillo, Sebastian Lopez, Diego Bonilla}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Polynomial-Time Reduction: Knapsack to Product Selection}
+
+We reduce the classic \textbf{0--1 Knapsack Problem} (NP-hard) to our real-world problem, \textbf{Product Selection Under Budget Constraints}. In Knapsack, we are given items with \textbf{weights} and \textbf{values}, and a \textbf{capacity}; the goal is to select a subset of items of maximum total value without exceeding the capacity. In our setting, a store manager has products with \textbf{cost} (or shelf space used) and \textbf{promotional value} (or profit), plus a \textbf{budget} (or shelf-space limit); the goal is to maximize total promotional value without exceeding that limit.
+
+\paragraph{How instances of the NP-hard problem are transformed.}
+For each knapsack item, create one product. Table~\ref{tab:reduction} summarizes the correspondence. Concretely, a Knapsack instance with items $(w_i, v_i)$ and capacity $W$ becomes a product-selection instance with pairs $(\text{cost}_i, \text{value}_i)$ and budget $B$ by setting
+\begin{equation*}
+  \text{cost}_i = w_i,\qquad \text{value}_i = v_i,\qquad B = W.
+\end{equation*}
+The transformation copies each of the $n$ items once and renames fields, so it runs in $O(n)$ time and is polynomial.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Mapping from Knapsack to product selection.}
+  \label{tab:reduction}
+  \begin{tabular}{l l}
+    \hline
+    Knapsack problem & Product selection problem \\
+    \hline
+    Item & Product \\
+    Weight & Cost or shelf-space used \\
+    Value & Profit or promotional value \\
+    Capacity & Budget or shelf-space limit \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\paragraph{Why solving our problem implies a solution to the NP-hard problem.}
+Suppose we had an algorithm that solves product selection optimally on every instance. Given any Knapsack instance, we construct the corresponding product-selection instance as above, run the algorithm, and interpret the chosen products as the chosen knapsack items. Because costs, values, and the budget match weights, values, and capacity pointwise, any feasible product subset corresponds to a feasible knapsack subset with the same total value, and optimality is preserved in both directions. Thus we could solve Knapsack in polynomial time (transformation plus one call to the product-selection solver). So product selection under budget constraints is at least as hard as Knapsack; since Knapsack is NP-hard, our problem is NP-hard as well.
+
+\end{document}
